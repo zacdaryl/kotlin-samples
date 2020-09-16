@@ -1,3 +1,5 @@
+package com.jzm.security
+
 import java.security.*
 import java.security.spec.PKCS8EncodedKeySpec
 import java.security.spec.X509EncodedKeySpec
@@ -6,12 +8,12 @@ import javax.crypto.Cipher
 
 class RSA {
     companion object {
-        const val transformation = "RSA/ECB/PKCS1Padding"
+        const val transformation = "com.jzm.security.RSA/ECB/PKCS1Padding"
 
         // 公钥加密
         fun encrypt(publicKey: String, plainText: String): String {
             val byteArray = Base64.getDecoder().decode(publicKey)
-            val keyFactory = KeyFactory.getInstance("RSA")
+            val keyFactory = KeyFactory.getInstance("com.jzm.security.RSA")
             val keySpec = X509EncodedKeySpec(byteArray)
             val pubKey = keyFactory.generatePublic(keySpec) as PublicKey
 
@@ -28,7 +30,7 @@ class RSA {
         fun decrypt(privateKey: String, cipherText: String): String {
             val base64Buffer = Base64.getDecoder().decode(privateKey)
             val keySpec = PKCS8EncodedKeySpec(base64Buffer)
-            val keyFactory = KeyFactory.getInstance("RSA")
+            val keyFactory = KeyFactory.getInstance("com.jzm.security.RSA")
             val priKey = keyFactory.generatePrivate(keySpec) as PrivateKey
 
             val cipher = Cipher.getInstance(transformation)
@@ -41,7 +43,7 @@ class RSA {
 
         fun verify(publicKey: String, sign: String, data: String): Boolean {
             val byteArray = Base64.getDecoder().decode(publicKey)
-            val keyFactory = KeyFactory.getInstance("RSA")
+            val keyFactory = KeyFactory.getInstance("com.jzm.security.RSA")
             val keySpec = X509EncodedKeySpec(byteArray)
             val pubKey = keyFactory.generatePublic(keySpec) as PublicKey
 
@@ -56,7 +58,7 @@ class RSA {
         fun sign(privateKey: String, data: String): String {
             val base64Buffer = Base64.getDecoder().decode(privateKey)
             val keySpec = PKCS8EncodedKeySpec(base64Buffer)
-            val keyFactory = KeyFactory.getInstance("RSA")
+            val keyFactory = KeyFactory.getInstance("com.jzm.security.RSA")
             val priKey = keyFactory.generatePrivate(keySpec) as PrivateKey
 
             val signature = Signature.getInstance("SHA1withRSA")
@@ -69,7 +71,7 @@ class RSA {
 
         //生成公私钥对
         fun generateKeyPair(): Pair<String, String> {
-            val keyPairGenerator = KeyPairGenerator.getInstance("RSA")
+            val keyPairGenerator = KeyPairGenerator.getInstance("com.jzm.security.RSA")
             val keypair = keyPairGenerator.genKeyPair()
 
             val private = Base64.getEncoder().encodeToString(keypair.private.encoded)
@@ -91,11 +93,11 @@ fun main() {
 //    println("public key: $pub")
 //    pub = keyPair.second
     val cipherText = RSA.encrypt(keyPair.second, plainText)
-    println("RSA encrypt: $cipherText")
+    println("com.jzm.security.RSA encrypt: $cipherText")
 
     println("private key: ${keyPair.first}")
     val decryptedText = RSA.decrypt(keyPair.first, cipherText)
-    println("RSA decrypt: $decryptedText")
+    println("com.jzm.security.RSA decrypt: $decryptedText")
     println("decrypt result is equal to plain text? ${decryptedText == plainText}")
 
     //签名、验签
@@ -108,6 +110,6 @@ fun main() {
 //    val sign = "Txa7faf42HJXSee+iNDk+Hm7qtzzG2rba7yHTDYoBSCg1dAASvmbdBdSN1QEJFrkOQbrSECVzuvdo4s/pelIcvpLkpdJwWrFqLwRSah4hgS/VsgNSpd8iPM5A8TQhooqnrpch2Y62zcgmaK7hqcuB+SdkeDJhnvC75/iozZJwc8="
 //    val data = "PZClfikEFH2atueBFd8+1g3FnlYWLus7iobk8pgYTkZLaY7G1HM4UTwnMAcs7yLQ3AbshGvjAE/pRcNaEusdn8zGVTRVRKogookPrv3GpW5e42l6+bwH5bRnxLszfCeprHbqlJ9Q5Nsm2BMVh3Gk+qTAUzlYUvyX9k/g7l3ACzvoOIjHKdLkWpQdP89tNCurMwsIDHbp9KdPWK/fpAekEPG6q/nmtkPZLy2lKEWKo4lMz+da/JxwSKCR0e0fZ4KdOFNuQHhp/R1Wk0I+dKjUzoheWuJ0TRL9HJiUyZJkwI20OZpS+GkpJnqgNj8rJcJbMGs/ZX4InFeOA4HR5ijC0/UiC8+hbakbhcwyp6nbvA8NAUbkRJiC8cT68etxaZzBvo4HbvtonZW5xCbXXfwfEw8Q+YzT5bGZQkt+GWRa1S5lISIyJ1J8W1I6IpHkQJqv9k/g7l3ACztZRxbHkktZ5DKnaURiDOA2gYjCAlacHYPO1Ut3hWvlJ2hbOOBDzz/La9th30a/oTGM5bdIY1PcXIF66S9bNrHqSpa/deTkuy7k+Us5MBr9mgvzR5UbFL1de+Kcwd3GLHrlLgjISLXmqFI6IpHkQJqv9k/g7l3ACzsds3TCtSMw9vofODhiLIDU5mTe8EVlhlLioIwoQSyOgrjAKUVMdVSZT+jksn3KGX/3MrwLSUSsvPyR4/YgF34eeXCTX2jb5FHdZMWkiwGlMstEm+kyUD/ankBjp8Y2ndbFHXt+cS3SqEZpV8KmqpC6QrztTy17FRH9cBrCT8QoovlXLd5gCumuJQLwn+rebdp6XjmtZ+oaMoxDUEb4beiWXe51Dve6hK71eFt6MwO9hFBXbx85G3oN1H7xzWXFQbl0X84W5+MVQFRKlf91VUr0vKtzecAwMZRIGRdfkXLdn5unallTEGUH"
 //
-//    val isPassed = RSA.verify(pub, sign, data)
+//    val isPassed = com.jzm.security.RSA.verify(pub, sign, data)
 //    println("verify sign: $isPassed")
 }

@@ -1,10 +1,12 @@
+package com.jzm.coroutines
+
 import kotlinx.coroutines.*
 
-fun main() = runBlocking<Unit>(CoroutineName("main")) {
-//    launch { // context of the parent, main runBlocking coroutine
-//        println("main runBlocking      : I'm working in thread ${Thread.currentThread().name}")
+fun main() = runBlocking<Unit>(CoroutineName("com.jzm.security.com.jzm.coroutines.main")) {
+//    launch { // context of the parent, com.jzm.security.com.jzm.coroutines.main runBlocking coroutine
+//        println("com.jzm.security.com.jzm.coroutines.main runBlocking      : I'm working in thread ${Thread.currentThread().name}")
 //    }
-//    launch(Dispatchers.Unconfined) { // not confined -- will work with main thread
+//    launch(Dispatchers.Unconfined) { // not confined -- will work with com.jzm.security.com.jzm.coroutines.main thread
 //        println("Unconfined            : I'm working in thread ${Thread.currentThread().name}")
 //    }
 //    launch(Dispatchers.Default) { // will get dispatched to DefaultDispatcher
@@ -16,28 +18,28 @@ fun main() = runBlocking<Unit>(CoroutineName("main")) {
 
     /***************************************/
 
-//    launch(Dispatchers.Unconfined) { // not confined -- will work with main thread
+//    launch(Dispatchers.Unconfined) { // not confined -- will work with com.jzm.security.com.jzm.coroutines.main thread
 //        println("Unconfined      : I'm working in thread ${Thread.currentThread().name}")
 //        delay(500)
 //        println("Unconfined      : After delay in thread ${Thread.currentThread().name}")
 //    }
-//    launch { // context of the parent, main runBlocking coroutine
-//        println("main runBlocking: I'm working in thread ${Thread.currentThread().name}")
+//    launch { // context of the parent, com.jzm.security.com.jzm.coroutines.main runBlocking coroutine
+//        println("com.jzm.security.com.jzm.coroutines.main runBlocking: I'm working in thread ${Thread.currentThread().name}")
 //        delay(1000)
-//        println("main runBlocking: After delay in thread ${Thread.currentThread().name}")
+//        println("com.jzm.security.com.jzm.coroutines.main runBlocking: After delay in thread ${Thread.currentThread().name}")
 //    }
 
     /***************************************/
 
 //    val a = async {
-//        log("I'm computing a piece of the answer")
+//        com.jzm.coroutines.log("I'm computing a piece of the answer")
 //        6
 //    }
 //    val b = async {
-//        log("I'm computing another piece of the answer")
+//        com.jzm.coroutines.log("I'm computing another piece of the answer")
 //        7
 //    }
-//    log("The answer is ${a.await() * b.await()}")
+//    com.jzm.coroutines.log("The answer is ${a.await() * b.await()}")
 
 
     /***************************************/
@@ -45,11 +47,11 @@ fun main() = runBlocking<Unit>(CoroutineName("main")) {
 //    newSingleThreadContext("Ctx1").use { ctx1 ->
 //        newSingleThreadContext("Ctx2").use { ctx2 ->
 //            runBlocking(ctx1) {
-//                log("Started in ctx1")
+//                com.jzm.coroutines.log("Started in ctx1")
 //                withContext(ctx2) {
-//                    log("Working in ctx2")
+//                    com.jzm.coroutines.log("Working in ctx2")
 //                }
-//                log("Back to ctx1")
+//                com.jzm.coroutines.log("Back to ctx1")
 //            }
 //        }
 //    }
@@ -77,7 +79,7 @@ fun main() = runBlocking<Unit>(CoroutineName("main")) {
 //    delay(500)
 //    request.cancel() // cancel processing of the request
 //    delay(1000) // delay a second to see what happens
-//    println("main: Who has survived request cancellation?")
+//    println("com.jzm.security.com.jzm.coroutines.main: Who has survived request cancellation?")
 
 
     /***************** Parental responsibilities **********************/
@@ -95,7 +97,7 @@ fun main() = runBlocking<Unit>(CoroutineName("main")) {
 //    println("Now processing of the request is complete")
 
     /*****************  **********************/
-    log("Started main coroutine")
+    log("Started com.jzm.security.com.jzm.coroutines.main coroutine")
     // run two background value computations
     val v1 = async(CoroutineName("v1coroutine")) {
         delay(500)

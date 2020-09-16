@@ -1,3 +1,5 @@
+package com.jzm.security
+
 import java.security.SecureRandom
 import java.util.*
 import javax.crypto.Cipher
@@ -8,11 +10,11 @@ import kotlin.random.Random
 
 class AES {
     companion object {
-        private const val transformation = "AES/ECB/PKCS5Padding"
+        private const val transformation = "com.jzm.security.AES/ECB/PKCS5Padding"
 
         fun encrypt(key: String, plainText: String): String {
             val secretKey = secretKey(key)
-            val keySpec = SecretKeySpec(secretKey.encoded, "AES")
+            val keySpec = SecretKeySpec(secretKey.encoded, "com.jzm.security.AES")
             val cipher = Cipher.getInstance(transformation)
             cipher.init(Cipher.ENCRYPT_MODE, keySpec)
 
@@ -22,7 +24,7 @@ class AES {
 
         fun decrypt(key: String, cipherText: String): String{
             val secretKey = secretKey(key)
-            val keySpec = SecretKeySpec(secretKey.encoded, "AES")
+            val keySpec = SecretKeySpec(secretKey.encoded, "com.jzm.security.AES")
             val cipher = Cipher.getInstance(transformation)
             cipher.init(Cipher.DECRYPT_MODE, keySpec)
 
@@ -40,7 +42,7 @@ class AES {
         }
 
         private fun secretKey(key: String): SecretKey {
-            val keyGenerator = KeyGenerator.getInstance("AES")
+            val keyGenerator = KeyGenerator.getInstance("com.jzm.security.AES")
             val secureRandom = SecureRandom.getInstance("SHA1PRNG")
             secureRandom.setSeed(key.toByteArray())
             keyGenerator.init(128, secureRandom)
@@ -51,13 +53,13 @@ class AES {
 
 fun main() {
     val keyStr = AES.randomKey();
-    println("AES key: $keyStr")
+    println("com.jzm.security.AES key: $keyStr")
 
     val plainText = "18610886666 AES测试"
     val cipherText = AES.encrypt(keyStr, plainText)
 
-    println("AES encrypted: $cipherText")
+    println("com.jzm.security.AES encrypted: $cipherText")
 
     val decryptedText = AES.decrypt(keyStr, cipherText)
-    println("AES decrypted: $decryptedText")
+    println("com.jzm.security.AES decrypted: $decryptedText")
 }

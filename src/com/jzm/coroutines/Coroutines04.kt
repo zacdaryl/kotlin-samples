@@ -1,3 +1,5 @@
+package com.jzm.coroutines
+
 import kotlinx.coroutines.*
 
 fun main() = runBlocking {
@@ -8,10 +10,10 @@ fun main() = runBlocking {
         }
     }
     delay(2300L) // delay a bit
-    println("main: I'm tired of waiting!")
+    println("com.jzm.security.com.jzm.coroutines.main: I'm tired of waiting!")
     job.cancel() // cancels the job
 //    job.join() // waits for job's completion
-    println("main: Now I can quit.")
+    println("com.jzm.security.com.jzm.coroutines.main: Now I can quit.")
 
     /**********************/
 
@@ -29,9 +31,9 @@ fun main() = runBlocking {
 //        }
 //    }
 //    delay(1300L) // delay a bit
-//    println("main: I'm tired of waiting!")
+//    println("com.jzm.security.com.jzm.coroutines.main: I'm tired of waiting!")
 //    job.cancelAndJoin() // cancels the job and waits for its completion
-//    println("main: Now I can quit.")
+//    println("com.jzm.security.com.jzm.coroutines.main: Now I can quit.")
 
     /**********************/
 
@@ -46,9 +48,9 @@ fun main() = runBlocking {
 //        }
 //    }
 //    delay(1300L) // delay a bit
-//    println("main: I'm tired of waiting!")
+//    println("com.jzm.security.com.jzm.coroutines.main: I'm tired of waiting!")
 //    job.cancelAndJoin() // cancels the job and waits for its completion
-//    println("main: Now I can quit.")
+//    println("com.jzm.security.com.jzm.coroutines.main: Now I can quit.")
 
     /**********************/
 
@@ -67,9 +69,9 @@ fun main() = runBlocking {
 //        }
 //    }
 //    delay(1300L) // delay a bit
-//    println("main: I'm tired of waiting!")
+//    println("com.jzm.security.com.jzm.coroutines.main: I'm tired of waiting!")
 //    job.cancelAndJoin() // cancels the job and waits for its completion
-//    println("main: Now I can quit.")
+//    println("com.jzm.security.com.jzm.coroutines.main: Now I can quit.")
 
     /**********************/
 

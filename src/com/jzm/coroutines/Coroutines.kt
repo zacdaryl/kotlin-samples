@@ -1,3 +1,5 @@
+package com.jzm.coroutines
+
 import kotlinx.coroutines.*
 import kotlin.concurrent.thread
 
@@ -20,7 +22,7 @@ fun main() = runBlocking {
 //    job.join() // wait until child coroutine completes
 //    Thread.sleep(2000L) // 阻塞主线程 2 秒钟来保证 JVM 存活
 
-//    runBlocking {     // but this expression blocks the main thread
+//    runBlocking {     // but this expression blocks the com.jzm.security.com.jzm.coroutines.main thread
 //        delay(2000L)  // ... while we delay for 2 seconds to keep JVM alive
 //    }
 
